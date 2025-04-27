@@ -1,0 +1,144 @@
+body, html {
+    height: 100%;
+    margin: 0;
+    background: linear-gradient(to right, #26333D, #323741, #21214E);
+    font-family: 'Roboto', sans-serif;
+}
+
+.chat {
+    margin: auto;
+}
+
+.card {
+    height: 80vh;
+    border-radius: 20px;
+    background-color: rgba(0, 0, 0, 0.4);
+    box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.5);
+}
+
+.card-header {
+    background-color: #2874f0;
+    color: white;
+    border-radius: 20px 20px 0 0;
+    border: none;
+    padding: 15px;
+}
+
+.msg_card_body {
+    overflow-y: auto;
+    background: #e9f3fb;
+    padding: 20px;
+}
+
+.card-footer {
+    border-top: none;
+    background: white;
+    border-radius: 0 0 20px 20px;
+    padding: 10px;
+}
+
+.type_msg {
+    background-color: rgba(0, 0, 0, 0.3);
+    color: white;
+    border: none;
+    height: 50px;
+    border-radius: 15px;
+    padding: 10px;
+}
+
+.type_msg:focus {
+    box-shadow: none;
+    outline: none;
+}
+
+.send_btn {
+    background-color: #2874f0;
+    color: white;
+    border: none;
+    border-radius: 0 15px 15px 0;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.send_btn:hover {
+    background-color: #4791ff;
+}
+
+.msg_cotainer {
+    background: white;
+    color: black;
+    padding: 10px 15px;
+    border-radius: 20px;
+    margin-left: 10px;
+    box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.1);
+    position: relative;
+    max-width: 70%;
+}
+
+.msg_cotainer_send {
+    background: #ffe033; /* Flipkart Yellow */
+    padding: 10px 15px;
+    border-radius: 20px;
+    margin-right: 10px;
+    box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.2);
+    position: relative;
+    max-width: 70%;
+}
+
+.msg_time, .msg_time_send {
+    position: absolute;
+    font-size: 10px;
+    color: rgba(0, 0, 0, 0.4);
+}
+
+.msg_time {
+    left: 0;
+    bottom: -18px;
+}
+
+.msg_time_send {
+    right: 0;
+    bottom: -18px;
+}
+
+.img_cont, .img_cont_msg img {
+    width: 45px;
+    height: 45px;
+}
+
+.online_icon {
+    position: absolute;
+    height: 15px;
+    width: 15px;
+    background-color: #4cd137;
+    border-radius: 50%;
+    bottom: 0.2em;
+    right: 0.4em;
+    border: 1.5px solid white;
+}
+
+.user_info span {
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.user_info p {
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.8);
+    margin: 0;
+}
+
+/* Optional - smooth message scroll */
+#messageFormeight {
+    scroll-behavior: smooth;
+}
+
+/* Mobile Responsive */
+@media(max-width: 576px) {
+    .chat {
+        padding: 10px;
+    }
+    .card {
+        height: 90vh;
+    }
+}
