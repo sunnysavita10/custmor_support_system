@@ -1,0 +1,13 @@
+astra_db:
+  collection_name: "ecommdata"
+
+embedding_model:
+  provider: "google"
+  model_name: "models/text-embedding-004"
+
+retriever:
+  top_k: 3
+
+llm:
+  provider: "google"
+  model_name: "gemini-1.5-pro"  
