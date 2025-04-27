@@ -5,7 +5,7 @@ from typing import List, Tuple
 from langchain_core.documents import Document
 from langchain_astradb import AstraDBVectorStore
 from utils.model_loader import ModelLoader
-from config.config_loader import load_config
+from utils.config_loader import load_config
 
 class DataIngestion:
     """
