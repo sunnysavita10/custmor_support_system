@@ -2,7 +2,7 @@ import os
 from langchain_astradb import AstraDBVectorStore
 from typing import List
 from langchain_core.documents import Document
-from config.config_loader import load_config
+from utils.config_loader import load_config
 from utils.model_loader import ModelLoader
 from dotenv import load_dotenv
 
