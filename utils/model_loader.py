@@ -19,6 +19,9 @@ class ModelLoader:
         Validate necessary environment variables.
         """
         required_vars = ["GOOGLE_API_KEY","GROQ_API_KEY"]
+        # Force clear old key if cached
+        # if "GROQ_API_KEY" in os.environ:
+        #     del os.environ["GROQ_API_KEY"]
         self.groq_api_key=os.getenv("GROQ_API_KEY")
         missing_vars = [var for var in required_vars if not os.getenv(var)]
         if missing_vars:
@@ -38,6 +41,7 @@ class ModelLoader:
         """
         print("LLM loading...")
         model_name=self.config["llm"]["model_name"]
+        print(self.groq_api_key)
         gemini_model=ChatGroq(model=model_name,api_key=self.groq_api_key)
         #gemini_model=ChatGoogleGenerativeAI(model=model_name)
         
