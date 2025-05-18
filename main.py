@@ -17,10 +17,15 @@ from retriever.retrieval import Retriever
 from utils.model_loader import ModelLoader
 
 from prompt_library.prompt import PROMPT_TEMPLATES
-
+import os
+from fastapi.staticfiles import StaticFiles
 
 app = FastAPI()
-app.mount("/static", StaticFiles(directory="static"), name="static") 
+
+
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+app.mount("/static", StaticFiles(directory=os.path.join(BASE_DIR, "static")), name="static")
+
 templates = Jinja2Templates(directory="templates")
 # Allow CORS (optional for frontend)
 app.add_middleware(
