@@ -47,7 +47,7 @@ class DataIngestion:
         Get path to the CSV file located inside 'data' folder.
         """
         current_dir = os.getcwd()
-        csv_path = os.path.join(current_dir, 'data', 'flipkart_product_review.csv')
+        csv_path = os.path.join(current_dir,'data', 'product_reviews.csv')
 
         if not os.path.exists(csv_path):
             raise FileNotFoundError(f"CSV file not found at: {csv_path}")
@@ -59,7 +59,7 @@ class DataIngestion:
         Load product data from CSV.
         """
         df = pd.read_csv(self.csv_path)
-        expected_columns = {'product_title', 'rating', 'summary', 'review'}
+        expected_columns = {'product_id','product_title', 'rating', 'total_reviews','price', 'top_reviews'}
 
         if not expected_columns.issubset(set(df.columns)):
             raise ValueError(f"CSV must contain columns: {expected_columns}")
@@ -74,21 +74,25 @@ class DataIngestion:
 
         for _, row in self.product_data.iterrows():
             product_entry = {
-                "product_name": row['product_title'],
-                "product_rating": row['rating'],
-                "product_summary": row['summary'],
-                "product_review": row['review']
-            }
+                    "product_id": row["product_id"],
+                    "product_title": row["product_title"],
+                    "rating": row["rating"],
+                    "total_reviews": row["total_reviews"],
+                    "price": row["price"],
+                    "top_reviews": row["top_reviews"]
+                }
             product_list.append(product_entry)
 
         documents = []
         for entry in product_list:
             metadata = {
-                "product_name": entry["product_name"],
-                "product_rating": entry["product_rating"],
-                "product_summary": entry["product_summary"]
+                    "product_id": entry["product_id"],
+                    "product_title": entry["product_title"],
+                    "rating": entry["rating"],
+                    "total_reviews": entry["total_reviews"],
+                    "price": entry["price"]
             }
-            doc = Document(page_content=entry["product_review"], metadata=metadata)
+            doc = Document(page_content=entry["top_reviews"], metadata=metadata)
             documents.append(doc)
 
         print(f"Transformed {len(documents)} documents.")
@@ -118,8 +122,8 @@ class DataIngestion:
         documents = self.transform_data()
         vstore, inserted_ids = self.store_in_vector_db(documents)
 
-        # Optionally do a quick search
-        query = "Can you tell me the low budget headphone?"
+        #Optionally do a quick search
+        query = "Can you tell me the low budget iphone?"
         results = vstore.similarity_search(query)
 
         print(f"\nSample search results for query: '{query}'")
